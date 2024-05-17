@@ -1,0 +1,45 @@
+clc;
+%% Error comparison
+e1=[0.000024241 0.000044519 0.0001006 0.0000734 0.000074894 0.000061542 0.000060258];
+e2=[0.0000040296 0.000010431 0.0000050339 0.000018191 0.000021662 0.000036915 0.000032332];
+figure;
+lg=semilogy(e1,"Marker","square");
+hold on;
+lg1=semilogy(e2,"Marker","diamond");
+title('Error comparison');
+ylabel('Error values (Pa)');
+xlabel('Case number');
+ylim([0.000001 0.001]);
+legend('Gauss-Seidel error values','ADI error values');
+set(gca,'YMinorTick','on','TickLength',[0.02,0.005]);
+grid on;
+hold off;
+%% Compare iterations for Dirichlet BC
+it1=[3120 6328 7377 7938 12819 16894 27856];
+it2=[800 2896 1689 5376 6515 7915 9898];
+figure;
+plot(it1,"Marker","square");
+hold on;
+plot(it2,"Marker","diamond");
+title('Iteration count comparison with Dirichlet BC');
+ylabel('No. of iteration for converged solution');
+xlabel('Case number');
+legend('Gauss-Seidel iteration count','ADI iteration count','Location','northwest');
+set(gca,'YMinorTick','on','TickLength',[0.02,0.005]);
+grid on;
+hold off;
+%% Compare iterations for Neumann BC
+it3=[4638 12082 23549 42363];
+it4=[1041 4271 9298 23549];
+figure;
+plot(it3,"Marker","square");
+hold on;
+plot(it4,"Marker","diamond");
+title('Iteration count comparison with Neumann BC');
+ylabel('No. of iteration for converged solution');
+xlabel('Case number');
+set(gca,'XTick',1:1:4); 
+legend('Gauss-Seidel iteration count','ADI iteration count','Location','northwest');
+set(gca,'YMinorTick','on','TickLength',[0.02,0.005]);
+grid on;
+hold off;
